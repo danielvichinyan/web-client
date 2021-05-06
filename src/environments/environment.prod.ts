@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  authApiUrl: '/api/auth',
+  profileApiUrl: '/api/profile'
 };
