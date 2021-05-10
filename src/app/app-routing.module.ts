@@ -7,9 +7,17 @@ const routes: Routes = [
     redirectTo: 'landing',
     pathMatch: 'full'
   },
+  { 
+    path: '', 
+    loadChildren: () => import('./components/pages/pages.module').then(m => m.PagesModule) 
+  },
   {
     path: '',
     loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule)
   }
 ];
 
