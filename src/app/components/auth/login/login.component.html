@@ -1,11 +1,13 @@
 <form (ngSubmit)="login()">
     <div>
+      <i class="material-icons prefix">account_circle</i>
       <label>
         Username: <input type="text" name="username" [(ngModel)]="user.username" placeholder="Enter username...">
       </label>
     </div>
   
     <div>
+      <i class="material-icons prefix">lock</i>
       <label>
         Password: <input type="password" name="password" [(ngModel)]="user.password" placeholder="Enter password...">
       </label>
