@@ -5,6 +5,7 @@ export class RegisterRequest {
         public confirmPassword: string = '',
         public firstName: string = '',
         public lastName: string = '',
+        public email: string = '',
         public bornOn: Date = new Date()
     ) {
     }

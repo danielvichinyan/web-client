@@ -1,4 +1,4 @@
-export class ProfileResponse {
+export class ProfileRequest {
     constructor(
         public firstName: string = '',
         public lastName: string = '',
