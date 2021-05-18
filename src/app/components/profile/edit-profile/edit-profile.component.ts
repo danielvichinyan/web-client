@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProfileRequest } from '../payload/profile.request';
 import { ProfileResponse } from '../payload/profile.response';
@@ -10,22 +9,15 @@ import { ProfileService } from '../services/profile-service';
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss']
 })
-export class EditProfileComponent implements OnInit, OnDestroy  {
+export class EditProfileComponent implements OnInit, OnDestroy {
 
-  public editProfileUser: ProfileRequest = new ProfileRequest();
-  
+  public profile: ProfileRequest = new ProfileRequest();
+  public newProfile: ProfileResponse = new ProfileResponse();
+
   private subscription = new Subscription();
 
-  public profile: ProfileResponse = {
-    firstName: '',
-    lastName: '',
-    bornOn: new Date(),
-    email: ''
-  };
-  
   constructor(
-    private profileService: ProfileService,
-    private router: Router
+    private profileService: ProfileService
   ) { }
 
   ngOnInit(): void {
@@ -35,9 +27,9 @@ export class EditProfileComponent implements OnInit, OnDestroy  {
   }
 
   editProfile(): void {
-    this.profileService.editProfile(this.editProfileUser).subscribe(response => {
-      this.profile = response,
-      this.router.navigate(['/view-profile'])
+    this.profileService.editProfile(this.profile).subscribe(response => {
+      this.newProfile = response;
+      this.profile = this.newProfile;
     });
   }
 
