@@ -1,28 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'landing',
-    pathMatch: 'full'
-  },
-  { 
-    path: '', 
-    loadChildren: () => import('./components/pages/pages.module').then(m => m.PagesModule) 
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'login',
+        loadChildren: () => import('./main/auth/login/login.module').then(m => m.LoginModule)
+      },
+      {
+        path: 'register',
+        loadChildren: () => import('./main/auth/register/register.module').then(m => m.RegisterModule)
+      }
+    ],
   },
   {
-    path: '',
-    loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
-  },
-  {
-    path: '',
-    loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule)
+    path: 'welcome',
+    loadChildren: () =>
+          import('./pages/pages.module').then((m) => m.PagesModule),
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
