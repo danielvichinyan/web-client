@@ -1,43 +1,32 @@
-<p>
-    <mat-toolbar class="highlight-background white-text">
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-        </button>
-    
-        <button 
-            mat-icon-button 
-            class="example-icon" 
-            aria-label="Example icon-button with menu icon" 
-            style="margin-right: 89em;"
-            (click)="navigateToWelcome()">
-            Know It
-        </button>
-
-        <button 
-            mat-icon-button 
-            class="example-icon" 
-            aria-label="Example icon-button with menu icon" 
-            style="margin-right: 2em;"
-            (click)="navigateToLogin()"
-            *ngIf="this.isUserLoggedIn">
-            Login
-        </button>
-
-        <button 
-            mat-icon-button class="example-icon" 
-            aria-label="Example icon-button with menu icon"
-            style="margin-right:2em;"
-            (click)="navigateToRegister()"
-            *ngIf="this.isUserLoggedIn">
-            Register
-        </button>
-
-        <button 
-            mat-icon-button class="material-icons-outlined large" 
-            aria-label="Example icon-button with heart icon" 
-            (click)="navigateToProfile()"
-            *ngIf="!this.isUserLoggedIn">
-            <mat-icon>account_circle</mat-icon>
-        </button>
-    </mat-toolbar>
-</p>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a style="margin-left: 1em;" [routerLink]="['/welcome']" class="navbar-brand">Know It</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <!-- User is not logged in. -->
+      <ul class="navbar-nav mr-auto" *ngIf="this.isUserLoggedIn">
+          <li class="nav-item">
+              <a [routerLink]="['/login']">Login</a>
+          </li>
+  
+          <li class="nav-item">
+            <a [routerLink]="['/register']">Register</a>
+          </li>
+      </ul>
+    <!-- User is logged in. -->
+      <ul class="navbar-nav" *ngIf="!this.isUserLoggedIn">
+          <li class="nav-item">
+              <a (click)="logout()">Logout</a>
+          </li>
+  
+          <li class="nav-item">
+              <a [routerLink]="['/lectures']">Lectures</a>
+          </li>
+  
+          <li class="nav-item">
+              <a [routerLink]="['/quizzes']">Quizzes</a>
+          </li>
+      </ul>
+    </div>
+  </nav>
