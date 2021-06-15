@@ -1,3 +1,8 @@
+$highlight-color: indianred;
+$white: white;
+$red: red;
+$green: #58a700;
+
 .centered-heading {
     font-size: 35px;
     display: flex;
@@ -12,4 +17,32 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+/* Styles the button. */
+.btn {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+    color: $white;
+    border-radius: 0.9em;
+    width: 25%;
+}
+
+/* Styles the button. */
+.btn-highlight {
+    background-color: $green;
+    border-color: $green;
+    color: $white;
+}
+
+/* Styles on a mouse hover over the button. */
+.btn:hover {
+    color: $highlight-color;
+    background-color: $white;
+    border-color: $white;
+}
+
+/* Disables the button when the form is invalid. */
+.button-disabled:disabled {
+    cursor: not-allowed;
 }
