@@ -1,54 +1,213 @@
-<form (ngSubmit)="register()">
-  <h1>Register</h1>
-    <div>
-      <i class="material-icons prefix">account_circle</i>
-      <label>
-        Username: <input type="text" name="username" [(ngModel)]="user.username" placeholder="Enter username...">
-      </label>
-    </div>
-  
-    <div>
-      <i class="material-icons prefix">lock</i>
-      <label>
-        Password: <input type="password" name="password" [(ngModel)]="user.password" placeholder="Enter password...">
-      </label>
-    </div>
-  
-    <div>
-      <i class="material-icons prefix">lock</i>
-      <label>
-        Confirm Password: <input type="password" name="confirmPassword" [(ngModel)]="user.confirmPassword" placeholder="Confirm password...">
-      </label>
+<!-- Register Page. -->
+<div class="col-md-12">
+
+  <!-- Title. -->
+  <h1 class="centered-white-text">Create an account</h1>
+
+  <!-- Register Form. -->
+  <div [formGroup]="registerForm" aria-labelledby="title">
+
+    <!-- Username field. -->
+    <div class="form-control-group center-all-forms">
+
+      <!-- Username label. -->
+      <span class="label-with-link">
+        <label class="centered-white-text" for="input-name">Username:</label>
+      </span>
+
+      <!-- Username input. -->
+      <input
+              nbInput
+              class="form-control form-half-width"
+              autofocus
+              fieldSize="large"
+              id="input-name"
+              formControlName="username"
+              [ngClass]="{'input-success': f.username.valid && f.username.touched, 
+                          'input-error': f.username.invalid && f.username.dirty}"
+              placeholder="Username">
+
+      <!-- Username Required Error. -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.username.touched && f.username.errors?.required">
+        This field is required.
+      </div>
+
+      <!-- Username Min Length Error. -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.username.errors?.minlength">
+        Username must be at least {{f.username.errors.minlength.requiredLength}} letters! 
+      </div>
+
     </div>
 
-    <div>
-        <i class="material-icons prefix">email</i>
-        <label>
-          Email: <input type="text" name="email" [(ngModel)]="user.email" placeholder="Email...">
-        </label>
+    <!-- Line Break. -->
+    <br>
+
+    <!-- First Name Field. -->
+    <div class="form-control-group center-all-forms">
+
+      <!-- First Name Label. -->
+      <span class="label-with-link">
+        <label class="centered-white-text" for="input-firstName">First Name:</label>
+      </span>
+
+      <!-- First Name Input. -->
+      <input  nbInput
+              autofocus
+              class="form-control form-half-width"
+              fieldSize="large"
+              id="input-firstName"
+              formControlName="firstName"
+              [ngClass]="{'input-success': f.firstName.valid && f.firstName.touched, 
+                          'input-error': f.firstName.invalid && f.firstName.dirty}"
+              placeholder="First Name">
+
+      <!-- First Name Required Error. -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.firstName.touched && f.firstName.errors?.required">
+        This field is required.
+      </div>
+
+      <!-- First Name Min Length Error -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.firstName.errors?.minlength">
+        First Name must be at least {{f.firstName.errors?.minlength.requiredLength}} letters!
+      </div>
+
+      <!-- First Name Max Length Error -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.firstName.errors?.maxlength">
+        First Name must be at most {{f.firstName.errors?.maxlength.requiredLength}} letters!
+      </div>
+
     </div>
-  
-    <div>
-      <i class="material-icons prefix">face</i>
-      <label>
-        First Name: <input type="text" name="firstName" [(ngModel)]="user.firstName" placeholder="First Name...">
-      </label>
+    
+    <!-- Line Break. -->
+    <br>
+
+    <!-- Last Name Field. -->
+    <div class="form-control-group center-all-forms">
+
+      <!-- Last Name Label. -->
+      <span class="label-with-link">
+        <label class="centered-white-text" for="input-lastName">Last Name:</label>
+      </span>
+
+      <!-- Last Name Input. -->
+      <input  nbInput
+              autofocus
+              class="form-control form-half-width"
+              fieldSize="large"
+              id="input-lastName"
+              formControlName="lastName"
+              [ngClass]="{'input-success': f.lastName.valid && f.lastName.touched, 
+                          'input-error': f.lastName.invalid && f.lastName.dirty}"
+              placeholder="Last Name">
+
+      <!-- Last Name Required Error. -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.lastName.touched && f.lastName.errors?.required">
+        This field is required.
+      </div>
+
+      <!-- Last Name Min Length Error -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.lastName.errors?.minlength">
+        Last Name must be at least {{f.lastName.errors?.minlength.requiredLength}} letters!
+      </div>
+
+      <!-- Last Name Max Length Error -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.lastName.errors?.maxlength">
+        Last Name must be at most {{f.lastName.errors?.maxlength.requiredLength}} letters!
+      </div>
+
     </div>
+
+    <!-- Line Break. -->
+    <br>
   
-    <div>
-      <i class="material-icons prefix">face</i>
-      <label>
-        Last Name: <input type="text" name="lastName" [(ngModel)]="user.lastName" placeholder="Last Name...">
-      </label>
+    <!-- Email Address Field. -->
+    <div class="form-control-group center-all-forms">
+
+      <!-- Email Label. -->
+      <span class="label-with-link">
+        <label class="centered-white-text" for="input-email">Email address:</label>
+      </span>
+
+      <!-- Email Input. -->
+      <input  nbInput
+              class="form-control form-half-width"
+              fieldSize="large"
+              id="input-email"
+              formControlName="email"
+              [ngClass]="{'input-success': f.email.valid && f.email.touched, 
+                          'input-error': f.email.invalid && f.email.dirty}"
+              placeholder="Email address">
+  
+      <!-- Email Required Error. -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.email.touched && f.email.errors?.required">
+        This field is required.
+      </div>
+
+      <!-- If the input Email is not in the correct regex pattern. (handle errors) -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.email.errors?.pattern">
+        Email must be in format example@example.com
+      </div>
+
     </div>
+
+    <!-- Line Break.-->
+    <br>
   
-    <div>
-      <i class="material-icons prefix">child_care</i>
-      <label>
-        Born on: <input type="date" name="bornOn" [(ngModel)]="user.bornOn">
-      </label>
+    <!-- Password field. -->
+    <div class="form-control-group center-all-forms">
+
+      <!-- Password label. -->
+      <span class="label-with-link">
+        <label class="centered-white-text" for="input-password">Password:</label>
+      </span>
+
+      <!-- Password input. -->
+      <input  nbInput
+              class="form-control form-half-width"
+              fieldSize="large"
+              id="input-password"
+              formControlName="password"
+              [ngClass]="{'input-success': f.password.valid && f.password.touched, 
+                          'input-error': f.password.invalid && f.password.dirty}"
+              type="password"
+              placeholder="Password">
+
+      <!-- Password Required Error. -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.password.touched && f.password.errors?.required">
+        This field is required.
+      </div>
+
+      <!-- If the input Password is not in the correct regex pattern. (handle errors) -->
+      <!-- Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character: -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.password.errors?.pattern">
+        Password must be minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
+      </div>
+
     </div>
+
+    <!-- Line Break. -->
+    <br>
   
-    <button type="submit">Register</button>
-</form>
-  
+    <!-- Register button. -->
+    <div class="center-all-forms">
+      <button nbButton 
+              fullWidth status="primary" 
+              [disabled]="isSuccessful || !registerForm.valid"
+              [class.btn-pulse]="isSuccessful" 
+              (click)="register()" 
+              class="btn button-disabled">
+              Register
+      </button>
+    </div>
+
+    <!-- Line breaks. -->
+    <br>
+    <br>
+
+
+    <!-- Successful registration. -->
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
+    </div>
+  </div>
+</div>

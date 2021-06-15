@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/theming';
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 $custom-typography: mat-typography-config($font-family: '"Balsamiq Sans", sans-serif;');
 @include mat-core($custom-typography);

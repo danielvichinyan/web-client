@@ -1,18 +1,77 @@
-<form (ngSubmit)="login()">
-    <div>
-      <h1>Login</h1>
-      <i class="material-icons prefix">account_circle</i>
-      <label>
-        Username: <input type="text" name="username" [(ngModel)]="user.username" placeholder="Enter username...">
-      </label>
-    </div>
+<!-- Login Page. -->
+<div class="col-md-12">
+
+  <!-- Title. -->
+  <h1 class="centered-white-text">Login</h1>
   
-    <div>
-      <i class="material-icons prefix">lock</i>
-      <label>
-        Password: <input type="password" name="password" [(ngModel)]="user.password" placeholder="Enter password...">
-      </label>
+  <!-- Login From. -->
+  <div [formGroup]="loginForm" aria-labelledby="title">
+
+    <!-- Username Field. -->
+    <div class="form-control-group center-all-forms">
+
+      <!-- Username field. -->
+      <span class="label-with-link">
+        <label class="label centered-white-text" for="input-username">Username:</label>
+      </span>
+
+      <!-- Password field. -->
+      <input  nbInput
+              class="form-control form-half-width"
+              id="input-username"
+              formControlName="username"
+              [ngClass]="{'input-success': f.username.valid && f.username.touched, 
+                          'input-error': f.username.invalid && f.username.dirty}"
+              placeholder="Username">
+
+      <!-- Username Required Error. -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.username.touched && f.username.errors?.required">
+        This field is required.
+      </div>
     </div>
+
+    <!-- Line Break. -->
+    <br>
   
-    <button type="submit">Login</button>
-</form>
+    <!-- Password Field. -->
+    <div class="form-control-group center-all-forms">
+
+      <!-- Password label. -->
+      <span class="label-with-link">
+        <label class="label centered-white-text" for="input-password">Password:</label>
+      </span>
+
+      <!-- Password input. -->
+      <input  nbInput
+              class="form-control form-half-width"
+              id="input-password"
+              formControlName="password"
+              [ngClass]="{'input-success': f.password.valid && f.password.touched, 
+                          'input-error': f.password.invalid && f.password.dirty}"
+              type="password"
+              placeholder="Password">
+
+      <!-- Password Required Error. -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.password.touched && f.password.errors?.required">
+        This field is required.
+      </div>
+    </div>
+
+    <!-- Line Break. -->
+    <br>
+  
+    <!-- Login Button. Calls the loginUser() function. -->
+    <div class="center-all-forms">
+      <button nbButton 
+              fullWidth 
+              status="primary" 
+              size="large"
+              (click)="login()" 
+              [disabled]="submitted || !loginForm.valid"
+              [class.btn-pulse]="submitted" 
+              class="btn button-disabled">
+              Log In
+      </button>
+    </div>
+  </div>
+</div>
