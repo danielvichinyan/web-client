@@ -119,6 +119,35 @@
 
     <!-- Line Break. -->
     <br>
+
+    <!-- Born On Field. -->
+    <div class="form-control-group center-all-forms">
+
+      <!-- Born On Label. -->
+      <span class="label-with-link">
+        <label class="centered-white-text" for="input-bornOn">Born On:</label>
+      </span>
+
+      <!-- Last Name Input. -->
+      <input  nbInput
+              autofocus
+              class="form-control form-half-width"
+              fieldSize="large"
+              id="input-bornOn"
+              formControlName="bornOn"
+              [ngClass]="{'input-success': f.bornOn.valid && f.bornOn.touched, 
+                          'input-error': f.bornOn.invalid && f.bornOn.dirty}"
+              type="date"
+              placeholder="Born On">
+
+      <!-- Last Name Required Error. -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.bornOn.touched && f.bornOn.errors?.required">
+        This field is required.
+      </div>
+    </div>
+
+    <!-- Line Break. -->
+    <br>
   
     <!-- Email Address Field. -->
     <div class="form-control-group center-all-forms">
@@ -182,12 +211,39 @@
       <div class="alert alert-danger form-half-width" *ngIf="f.password.errors?.pattern">
         Password must be minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
       </div>
-
     </div>
 
     <!-- Line Break. -->
     <br>
+
+    <!-- Confirm Pasword Field. -->
+    <div class="form-control-group center-all-forms">
+
+      <!-- Confirm Password label. -->
+      <span class="label-with-link">
+        <label class="centered-white-text" for="input-confirm-password">Confirm Password:</label>
+      </span>
+
+      <!-- Confirm Password input. -->
+      <input  nbInput
+              class="form-control form-half-width"
+              fieldSize="large"
+              id="input-confirm-password"
+              formControlName="confirmPassword"
+              [ngClass]="{'input-success': f.confirmPassword.valid && f.confirmPassword.touched, 
+                          'input-error': f.confirmPassword.invalid && f.confirmPassword.dirty}"
+              type="password"
+              placeholder="Confirm Password">
+
+      <!-- Confirm Password Required Error. -->
+      <div class="alert alert-danger form-half-width" *ngIf="f.confirmPassword.touched && f.confirmPassword.errors?.required">
+        This field is required.
+      </div>
+    </div>
   
+    <!-- Line Break -->
+    <br>
+
     <!-- Register button. -->
     <div class="center-all-forms">
       <button nbButton 
