@@ -8,9 +8,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  public isUserLoggedIn: boolean = false;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.isUserLoggedIn = !!localStorage.getItem('token');
   }
   
   navigateToWelcome() {
@@ -31,5 +34,9 @@ export class HeaderComponent implements OnInit {
 
   navigateToLectures() {
     this.router.navigate(['lectures']);
+  }
+
+  logout() {
+
   }
 }

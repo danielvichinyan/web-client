@@ -1,3 +1,14 @@
+$highlight-background: cornflowerblue;
+$white: white;
+
 .example-spacer {
     flex: 1 1 auto;
+}
+
+.highlight-background {
+    background-color: $highlight-background !important;
+}
+
+.white-text {
+    color: $white;
 }

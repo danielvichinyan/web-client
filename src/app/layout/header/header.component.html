@@ -1,5 +1,5 @@
 <p>
-    <mat-toolbar>
+    <mat-toolbar class="highlight-background white-text">
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
         </button>
@@ -18,7 +18,8 @@
             class="example-icon" 
             aria-label="Example icon-button with menu icon" 
             style="margin-right: 2em;"
-            (click)="navigateToLogin()">
+            (click)="navigateToLogin()"
+            *ngIf="this.isUserLoggedIn">
             Login
         </button>
 
@@ -26,14 +27,16 @@
             mat-icon-button class="example-icon" 
             aria-label="Example icon-button with menu icon"
             style="margin-right:2em;"
-            (click)="navigateToRegister()">
+            (click)="navigateToRegister()"
+            *ngIf="this.isUserLoggedIn">
             Register
         </button>
 
         <button 
             mat-icon-button class="material-icons-outlined large" 
             aria-label="Example icon-button with heart icon" 
-            (click)="navigateToProfile()">
+            (click)="navigateToProfile()"
+            *ngIf="!this.isUserLoggedIn">
             <mat-icon>account_circle</mat-icon>
         </button>
     </mat-toolbar>
