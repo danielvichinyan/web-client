@@ -15,17 +15,50 @@
           </li>
       </ul>
     <!-- User is logged in. -->
-      <ul class="navbar-nav" *ngIf="!this.isUserLoggedIn">
-          <li class="nav-item">
-              <a (click)="logout()">Logout</a>
-          </li>
+      <ul class="navbar-nav" *ngIf="this.isUserLoggedIn">
   
-          <li class="nav-item">
-              <a [routerLink]="['/lectures']">Lectures</a>
+          <li class="nav-item dropdown">
+            <a 
+                class="nav-link dropdown-toggle" 
+                id="navbarDropdown" 
+                role="button" 
+                data-toggle="dropdown" 
+                aria-haspopup="true" 
+                aria-expanded="false"
+                >Quizzes
+            </a>
+
+            <ul class="dropdown-menu" style="background-color: rgba(30, 93, 211, 0.801);" aria-labelledby="navbarDropdown">
+                <a class="dropdown-anchor" [routerLink]="['/quizzes']">View All Quizzes</a>
+
+                <div class="dropdown-divider"></div>
+                
+                <a [routerLink]="['/add-quiz']">Add New Quiz</a>
+            </ul>
           </li>
-  
+
+          <li class="nav-item dropdown">
+            <a 
+                class="nav-link dropdown-toggle" 
+                id="navbarDropdown" 
+                role="button" 
+                data-toggle="dropdown" 
+                aria-haspopup="true" 
+                aria-expanded="false"
+                >Lectures
+            </a>
+
+            <ul class="dropdown-menu" style="background-color: rgba(30, 93, 211, 0.801);" aria-labelledby="navbarDropdown">
+                <a class="dropdown-anchor" [routerLink]="['/lectures']">View All Lectures</a>
+
+                <div class="dropdown-divider"></div>
+                
+                <a [routerLink]="['/add-lecture']">Add New Lecture</a>
+            </ul>
+          </li>
+
           <li class="nav-item">
-              <a [routerLink]="['/quizzes']">Quizzes</a>
+            <a (click)="logout()">Logout</a>
           </li>
       </ul>
     </div>
