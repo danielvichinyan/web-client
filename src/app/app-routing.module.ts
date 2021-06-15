@@ -14,14 +14,18 @@ const routes: Routes = [
       {
         path: 'register',
         loadChildren: () => import('./main/auth/register/register.module').then(m => m.RegisterModule)
+      },
+      {
+        path: '',
+        loadChildren: () => import('./main/profile/profile.module').then(m => m.ProfileModule)
+      },
+      {
+        path: 'welcome',
+        loadChildren: () =>
+              import('./pages/pages.module').then((m) => m.PagesModule),
       }
     ],
   },
-  {
-    path: 'welcome',
-    loadChildren: () =>
-          import('./pages/pages.module').then((m) => m.PagesModule),
-  }
 ];
 
 @NgModule({

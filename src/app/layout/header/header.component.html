@@ -4,10 +4,36 @@
             <mat-icon>menu</mat-icon>
         </button>
     
-        <span>Know It</span>
-        <span class="example-spacer"></span>
-        
-        <button mat-icon-button class="material-icons-outlined large" aria-label="Example icon-button with heart icon">
+        <button 
+            mat-icon-button 
+            class="example-icon" 
+            aria-label="Example icon-button with menu icon" 
+            style="margin-right: 89em;"
+            (click)="navigateToWelcome()">
+            Know It
+        </button>
+
+        <button 
+            mat-icon-button 
+            class="example-icon" 
+            aria-label="Example icon-button with menu icon" 
+            style="margin-right: 2em;"
+            (click)="navigateToLogin()">
+            Login
+        </button>
+
+        <button 
+            mat-icon-button class="example-icon" 
+            aria-label="Example icon-button with menu icon"
+            style="margin-right:2em;"
+            (click)="navigateToRegister()">
+            Register
+        </button>
+
+        <button 
+            mat-icon-button class="material-icons-outlined large" 
+            aria-label="Example icon-button with heart icon" 
+            (click)="navigateToProfile()">
             <mat-icon>account_circle</mat-icon>
         </button>
     </mat-toolbar>
