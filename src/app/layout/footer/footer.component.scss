@@ -1,5 +1,6 @@
-$highlight-background: cornflowerblue;
+$highlight-background: rgba(30, 93, 211, 0.801);
 $highlight-color: indianred;
+$green-color: #58a700;
 $white: white;
 
 .site-footer
@@ -25,7 +26,8 @@ $white: white;
 
 .site-footer h6
 {
-  color: $white;
+  color: $highlight-color;
+  font-weight: bold;
   font-size: 16px;
   text-transform: uppercase;
   margin-top: 5px;
