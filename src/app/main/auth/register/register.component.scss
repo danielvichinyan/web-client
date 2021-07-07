@@ -1,0 +1,60 @@
+$highlight-color: indianred;
+$white: white;
+$red: red;
+$green: green;
+
+/* Styles the button. */
+.btn {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+    color: $white;
+    width: 25%
+}
+
+/* Styles on a mouse hover over the button. */
+.btn:hover {
+    color: $highlight-color;
+    background-color: $white;
+    border-color: $white;
+}
+
+/* Disables the button when the form is invalid. */
+.button-disabled:disabled {
+    cursor: not-allowed;
+}
+  
+/* Makes the inputs in RED color when the form is INVALID. */
+.input-error {
+    border-bottom: solid 1.60px $red !important;
+    border-right: solid 1.60px $red !important;
+    border-left: solid 1.60px $red !important;
+    border-top: solid 1.60px $red !important;
+}
+    
+/* Makes the inputs in GREEN color when the form is VALID. */
+.input-success {
+    border-bottom: solid 1.60px $green !important;
+    border-right: solid 1.60px $green !important;
+    border-left: solid 1.60px $green !important;
+    border-top: solid 1.60px $green !important;
+}
+
+.form-half-width {
+    width: 25%;
+}
+
+.center-all-forms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Centers the heading. */
+h1 {
+    font-size: 35px;
+    margin-top: 1em;
+    text-align: center;
+    margin-top: 3em;
+    margin-bottom: 1em;
+}

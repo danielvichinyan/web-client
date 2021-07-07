@@ -1,3 +1,60 @@
-.example-spacer {
-    flex: 1 1 auto;
+$highlight-background: rgba(30, 93, 211, 0.801);
+$highlight-color: indianred;
+$highlight: indianred;
+$white: white;
+
+.nav {
+    height: 5em !important;
+} 
+
+.bg-dark {
+    background-color: $highlight-background !important;
+}
+  
+.navbar-brand {
+    color: $highlight !important;
+    font-weight: bold;
+    &:hover {
+      color: lighten($highlight, 30%) !important;
+    }
+    font-size: 27px !important;
+}
+  
+.nav-item a {
+    transition: border 0.1s ease;
+    color: $white !important;
+    margin-left: 1.5em;
+    text-decoration: none;
+}
+  
+.nav-item a:hover {
+    text-decoration: none;
+    color: $highlight !important;
+    border-bottom: 0.1px solid $highlight;
+}
+  
+.navbar-toggler {
+    border-radius: 100px;
+    border: 0.5px solid #ffffff;
+}
+  
+.toggler_styling {
+    color: $white !important;
+}
+
+.navbar-fixed-top {
+    min-height: 50px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 50px;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a {
+    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;}
 }

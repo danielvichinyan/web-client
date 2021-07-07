@@ -1,1 +1,24 @@
-<p>landing works!</p>
+<!-- Landing welcoming Page. -->
+<div class="col-md-12">
+
+    <!-- Title. -->
+    <h1 class="centered-heading" style="margin-top: 4em;">Welcome!</h1>
+
+    <h3 class="centered-heading">Start learning now!</h3>
+
+    <div class="centered-text">
+        <button 
+            class="btn btn-lg" 
+            [routerLink]="['/register']"
+            style="margin-top: 1em;"
+            >Get Started
+        </button>
+
+        <button 
+            class="btn btn-highlight btn-lg"  
+            [routerLink]="['/login']"
+            style="margin-top: 1em;"
+            >I Already Have An Account
+        </button>
+    </div>
+</div>
