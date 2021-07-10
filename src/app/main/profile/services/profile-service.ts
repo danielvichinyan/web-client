@@ -18,6 +18,6 @@ export class ProfileService {
     }
 
     editProfile(editProfileRequest: ProfileRequest): Observable<ProfileResponse> {
-        return this.http.patch<ProfileResponse>(environment.profileApiUrl + '/me', editProfileRequest);
+        return this.http.put<ProfileResponse>(environment.profileApiUrl + '/me', editProfileRequest);
     }
 }

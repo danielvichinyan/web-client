@@ -1,4 +1,4 @@
-<!-- Login Page. -->
+<!-- Profile Page. -->
 <div class="col-md-12">
 
     <!-- Title. -->
@@ -24,5 +24,20 @@
         <label>
             Birthday: {{profile.bornOn}}    
         </label>
+    </div>
+
+    <!-- Line Break. -->
+    <br>
+  
+    <!-- Edit Profile Button -->
+    <div class="center-all-forms">
+      <button nbButton 
+              fullWidth 
+              status="primary" 
+              size="large"
+              [routerLink]="['/edit']"
+              class="btn button-disabled">
+              Edit Profile
+      </button>
     </div>
 </div>
