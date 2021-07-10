@@ -1,8 +1,11 @@
+import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ProgressSpinnerComponent } from '../../common-components/progress-spinner/progress-spinner.component';
+import { ProgressSpinnerService } from '../../common-components/progress-spinner/progress-spinner.service';
 import { EMAIL_PATTERN, PASSWORD_PATTERN } from '../constants';
 import { RegisterRequest } from '../payload/register.request';
 import { UserService } from '../services/user.service';
@@ -19,11 +22,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
   public minLength: number = 3;
   public maxLength: number = 20;
   public user: RegisterRequest = new RegisterRequest();
+  public overlayRef: OverlayRef;
 
   constructor(
     private userService: UserService, 
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private progressSpinnerService: ProgressSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -46,14 +51,25 @@ export class RegisterComponent implements OnInit, OnDestroy {
   */
   get f() { return this.registerForm.controls }
 
-  register(): void {
+  public register(): void {
+    this.openProgressSpinner();
     this.user = this.registerForm.value;
     
     this.userService
       .register(this.user)
       .pipe(takeUntil(this.$destroy))
-      .subscribe(() => this.router.navigate(['login']));
+      .subscribe(response => {
+        this.progressSpinnerService.close(this.overlayRef);
+        this.router.navigate(['login'])
+      });
   }
+
+  public openProgressSpinner(): void {
+    this.overlayRef = this.progressSpinnerService.open(
+        { hasBackdrop: true },
+        ProgressSpinnerComponent
+    );
+  } 
 
   ngOnDestroy() {
     this.$destroy.next(true);

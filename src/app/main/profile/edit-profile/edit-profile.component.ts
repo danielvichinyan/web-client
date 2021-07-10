@@ -26,16 +26,16 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.profileService.viewProfile().subscribe(response => {
+      this.profile = response;
+    });
+
     /* Login form validations. (only required currently) */
     this.editProfileForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required]],
       bornOn: ['', [Validators.required]],
-    });
-
-    this.profileService.viewProfile().subscribe(response => {
-      this.profile = response;
     });
   }
 
@@ -48,8 +48,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   editProfile(): void {
     this.profileService.editProfile(this.profile).subscribe(response => {
-      this.newProfile = response;
-      this.profile = this.newProfile;
+      this.profile = response;
     });
   }
 

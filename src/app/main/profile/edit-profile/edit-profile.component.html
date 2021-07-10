@@ -22,6 +22,7 @@
                 fieldSize="large"
                 id="input-firstName"
                 formControlName="firstName"
+                [(ngModel)]="profile.firstName"
                 [ngClass]="{'input-success': f.firstName.valid && f.firstName.touched, 
                             'input-error': f.firstName.invalid && f.firstName.dirty}"
                 placeholder="First Name">
@@ -61,6 +62,7 @@
                 fieldSize="large"
                 id="input-lastName"
                 formControlName="lastName"
+                [(ngModel)]="profile.lastName"
                 [ngClass]="{'input-success': f.lastName.valid && f.lastName.touched, 
                             'input-error': f.lastName.invalid && f.lastName.dirty}"
                 placeholder="Last Name">
@@ -100,6 +102,7 @@
                 fieldSize="large"
                 id="input-bornOn"
                 formControlName="bornOn"
+                [(ngModel)]="profile.bornOn"
                 [ngClass]="{'input-success': f.bornOn.valid && f.bornOn.touched, 
                             'input-error': f.bornOn.invalid && f.bornOn.dirty}"
                 type="date"
@@ -128,6 +131,7 @@
                 fieldSize="large"
                 id="input-email"
                 formControlName="email"
+                [(ngModel)]="profile.email"
                 [ngClass]="{'input-success': f.email.valid && f.email.touched, 
                             'input-error': f.email.invalid && f.email.dirty}"
                 placeholder="Email address">

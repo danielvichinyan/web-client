@@ -1,8 +1,11 @@
+import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { first, takeUntil } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
+import { ProgressSpinnerComponent } from '../../common-components/progress-spinner/progress-spinner.component';
+import { ProgressSpinnerService } from '../../common-components/progress-spinner/progress-spinner.service';
 import { LoginRequest } from '../payload/login.request';
 import { UserService } from '../services/user.service';
 
@@ -17,11 +20,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   public loginForm: FormGroup;
   public submitted: boolean = false;
   public user: LoginRequest = new LoginRequest();
+  public overlayRef: OverlayRef;
 
   constructor(
     private userService: UserService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private progressSpinnerService: ProgressSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +44,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   */
   get f() { return this.loginForm.controls }
 
-  login(): void { 
+  public login(): void { 
+    this.openProgressSpinner();
     this.user = this.loginForm.value;
     this.submitted = true;
     
@@ -50,8 +56,17 @@ export class LoginComponent implements OnInit, OnDestroy {
     .subscribe(response => {
       this.userService.isLoggedIn = true;
       this.router.navigate(['welcome']);
-    })
+
+      this.progressSpinnerService.close(this.overlayRef);
+    });
   }
+
+  public openProgressSpinner(): void {
+    this.overlayRef = this.progressSpinnerService.open(
+        { hasBackdrop: true },
+        ProgressSpinnerComponent
+    );
+  } 
 
   ngOnDestroy() {
     this.$destroy.next(true);
