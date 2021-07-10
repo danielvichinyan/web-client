@@ -1,6 +1,9 @@
+import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
+import { ProgressSpinnerComponent } from '../../common-components/progress-spinner/progress-spinner.component';
+import { ProgressSpinnerService } from '../../common-components/progress-spinner/progress-spinner.service';
 import { ProfileRequest } from '../payload/profile.request';
 import { ProfileResponse } from '../payload/profile.response';
 import { ProfileService } from '../services/profile-service';
@@ -13,16 +16,15 @@ import { ProfileService } from '../services/profile-service';
 export class EditProfileComponent implements OnInit, OnDestroy {
 
   public profile: ProfileRequest = new ProfileRequest();
-
   private $destroy: Subject<boolean> = new Subject<boolean>();
   public editProfileForm: FormGroup;
   public submitted: boolean = false;
-
-  public newProfile: ProfileResponse = new ProfileResponse();
+  public overlayRef: OverlayRef;
 
   constructor(
     private profileService: ProfileService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private progressSpinnerService: ProgressSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -44,12 +46,22 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   * 
   * @returns the controls of the login form
   */
-   get f() { return this.editProfileForm.controls }
+  public get f() { return this.editProfileForm.controls }
 
-  editProfile(): void {
+  public editProfile(): void {
+    this.openProgressSpinner();
     this.profileService.editProfile(this.profile).subscribe(response => {
       this.profile = response;
+
+      this.progressSpinnerService.close(this.overlayRef);
     });
+  }
+
+  public openProgressSpinner(): void {
+    this.overlayRef = this.progressSpinnerService.open(
+      { hasBackdrop: true },
+      ProgressSpinnerComponent
+    );
   }
 
   ngOnDestroy() {
