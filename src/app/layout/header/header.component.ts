@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/main/auth/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +11,20 @@ export class HeaderComponent implements OnInit {
 
   public isUserLoggedIn: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {
+
+  }
 
   ngOnInit(): void {
-    this.isUserLoggedIn = !!localStorage.getItem('token');
+    this.router.events.subscribe(event => {
+      if (event.constructor.name === "NavigationEnd") {
+        this.isUserLoggedIn = this.userService.isLoggedIn;
+      }
+    })
   }
   
   navigateToWelcome() {
@@ -37,6 +48,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-
+    this.isUserLoggedIn = false;
+    this.userService.isLoggedIn = false;
+    localStorage.removeItem('token');
+    this.router.navigate(['welcome']);
   }
 }

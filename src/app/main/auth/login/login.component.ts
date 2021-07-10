@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { first, takeUntil } from 'rxjs/operators';
 import { LoginRequest } from '../payload/login.request';
 import { UserService } from '../services/user.service';
 
@@ -45,11 +45,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     
     this.userService.login(this.user)
     .pipe(
-      takeUntil(this.$destroy)
+      first()
     )
     .subscribe(response => {
-      localStorage.setItem('token', response.headers.get('Authorization')!.replace('Bearer ', '').trim());
-      this.router.navigate(['landing']);
+      this.userService.isLoggedIn = true;
+      this.router.navigate(['welcome']);
     })
   }
 

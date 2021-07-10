@@ -5,7 +5,7 @@
     <a style="margin-left: 1em;" [routerLink]="['/welcome']" class="navbar-brand">Know It</a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
     <!-- User is not logged in. -->
-      <ul class="navbar-nav mr-auto" *ngIf="this.isUserLoggedIn">
+      <ul class="navbar-nav mr-auto" *ngIf="!this.isUserLoggedIn">
           <li class="nav-item">
               <a [routerLink]="['/login']">Login</a>
           </li>
@@ -58,7 +58,7 @@
           </li>
 
           <li class="nav-item">
-            <a (click)="logout()">Logout</a>
+            <a [routerLink]="['/welcome']" (click)="logout()">Logout</a>
           </li>
       </ul>
     </div>
