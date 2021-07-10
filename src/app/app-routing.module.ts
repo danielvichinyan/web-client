@@ -30,6 +30,11 @@ const routes: Routes = [
         path: '',
         loadChildren: () => import('./main/profile/profile.module').then(m => m.ProfileModule),
         canActivate: [AuthGuardService]
+      },
+      {
+        path: '',
+        loadChildren: () => import('./main/lectures/lectures.module').then(m => m.LecturesModule),
+        canActivate: [AuthGuardService]
       }
     ],
   },

@@ -28,4 +28,4 @@ import { LecturesRoutingModule } from './lectures-routing.module';
     ProgressSpinnerService
   ]
 })
-export class ProfileModule { }
+export class LecturesModule { }
