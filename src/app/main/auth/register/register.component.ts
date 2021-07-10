@@ -9,6 +9,7 @@ import { ProgressSpinnerService } from '../../common-components/progress-spinner
 import { EMAIL_PATTERN, PASSWORD_PATTERN } from '../constants';
 import { RegisterRequest } from '../payload/register.request';
 import { UserService } from '../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +29,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private userService: UserService, 
     private router: Router,
     private formBuilder: FormBuilder,
-    private progressSpinnerService: ProgressSpinnerService
+    private progressSpinnerService: ProgressSpinnerService,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +61,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .register(this.user)
       .pipe(takeUntil(this.$destroy))
       .subscribe(response => {
+        this.showSuccess();
         this.progressSpinnerService.close(this.overlayRef);
         this.router.navigate(['login'])
       });
@@ -70,6 +73,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
         ProgressSpinnerComponent
     );
   } 
+
+  public showSuccess(): void {
+    this.toastrService.success('Successfully registered!');
+  }
 
   ngOnDestroy() {
     this.$destroy.next(true);

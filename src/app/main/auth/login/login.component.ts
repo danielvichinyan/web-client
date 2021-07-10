@@ -8,6 +8,7 @@ import { ProgressSpinnerComponent } from '../../common-components/progress-spinn
 import { ProgressSpinnerService } from '../../common-components/progress-spinner/progress-spinner.service';
 import { LoginRequest } from '../payload/login.request';
 import { UserService } from '../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private progressSpinnerService: ProgressSpinnerService
+    private progressSpinnerService: ProgressSpinnerService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.userService.isLoggedIn = true;
       this.router.navigate(['welcome']);
 
+      this.showSuccess();
       this.progressSpinnerService.close(this.overlayRef);
     });
   }
@@ -67,6 +70,14 @@ export class LoginComponent implements OnInit, OnDestroy {
         ProgressSpinnerComponent
     );
   } 
+
+  public showSuccess(): void {
+    this.toastrService.success('Successfully logged in!');
+  }
+
+  public showError(): void {
+    this.toastrService.error('Invalid login! Please check your login credentials!');
+  }
 
   ngOnDestroy() {
     this.$destroy.next(true);

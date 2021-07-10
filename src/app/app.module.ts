@@ -10,6 +10,7 @@ import { MaterialModule } from './shared/material.module';
 import { LayoutModule } from './layout/layout.module';
 import { AuthGuardService } from './main/auth/guards/auth-guard.service';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    LayoutModule
+    LayoutModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
