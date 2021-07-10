@@ -61,6 +61,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       this.showSuccess();
       this.progressSpinnerService.close(this.overlayRef);
+    }, 
+    (error) => {
+      this.showError();
+      this.progressSpinnerService.close(this.overlayRef);
     });
   }
 

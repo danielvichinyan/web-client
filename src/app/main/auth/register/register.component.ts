@@ -64,6 +64,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.showSuccess();
         this.progressSpinnerService.close(this.overlayRef);
         this.router.navigate(['login'])
+      }, 
+      (error) => {
+        this.showError();
+        this.progressSpinnerService.close(this.overlayRef);
       });
   }
 
@@ -76,6 +80,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public showSuccess(): void {
     this.toastrService.success('Successfully registered!');
+  }
+
+  public showError(): void {
+    this.toastrService.error('Please fill in and check all fields!');
   }
 
   ngOnDestroy() {
