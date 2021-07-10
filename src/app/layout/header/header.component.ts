@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/main/auth/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +14,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router, 
-    private route: ActivatedRoute,
-    private userService: UserService
-  ) {
-
-  }
+    private userService: UserService,
+    private toastrService: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.router.events.subscribe(event => {
@@ -26,31 +25,16 @@ export class HeaderComponent implements OnInit {
       }
     })
   }
-  
-  navigateToWelcome() {
-    this.router.navigate(['welcome']);
-  }
 
-  navigateToLogin() {
-    this.router.navigate(['login']);
-  }
-
-  navigateToRegister() {
-    this.router.navigate(['register']);
-  }
-
-  navigateToProfile() {
-    this.router.navigate(['profile']);
-  }
-
-  navigateToLectures() {
-    this.router.navigate(['lectures']);
-  }
-
-  logout() {
+  public logout(): void {
     this.isUserLoggedIn = false;
     this.userService.isLoggedIn = false;
     localStorage.removeItem('token');
+    this.successfullyLoggedOut();
     this.router.navigate(['welcome']);
+  }
+
+  public successfullyLoggedOut() {
+    this.toastrService.success('Successfully logged out!');
   }
 }
