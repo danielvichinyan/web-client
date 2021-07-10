@@ -7,11 +7,13 @@ import { ProgressSpinnerService } from '../common-components/progress-spinner/pr
 import { LectureViewComponent } from './lecture-view/lecture-view.component';
 import { LecturesListComponent } from './lectures-list/lectures-list.component';
 import { LecturesRoutingModule } from './lectures-routing.module';
+import { AddLectureComponent } from './add-lecture/add-lecture.component';
 
 @NgModule({
   declarations: [
     LectureViewComponent,
-    LecturesListComponent
+    LecturesListComponent,
+    AddLectureComponent
   ],
   imports: [
     FormsModule,
