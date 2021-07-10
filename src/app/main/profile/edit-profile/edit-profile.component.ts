@@ -1,11 +1,10 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { ProgressSpinnerComponent } from '../../common-components/progress-spinner/progress-spinner.component';
 import { ProgressSpinnerService } from '../../common-components/progress-spinner/progress-spinner.service';
 import { ProfileRequest } from '../payload/profile.request';
-import { ProfileResponse } from '../payload/profile.response';
 import { ProfileService } from '../services/profile-service';
 
 @Component({
