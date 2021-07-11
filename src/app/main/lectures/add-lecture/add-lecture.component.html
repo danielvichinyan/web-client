@@ -1,1 +1,31 @@
-<p>add-lecture works!</p>
+<!-- Add Lecture Page. -->
+<div class="col-md-12">
+
+    <!-- Title. -->
+    <h1 class="centered-white-text">Add Lecture</h1>
+
+    <div class="panel-body">
+        <strong>Select files from your computer</strong>
+        <div *ngIf="fileStatus.status === 'progress'">
+            <div class="progress">
+                <div [style.width.%]="fileStatus.percent" class="progress-bar progress-bar-animated bg-info" role="progressbar" aria-valuenow="">
+                    {{ fileStatus.requestType }} {{ fileStatus.percent }}%
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <form enctype="multipart/form-data">
+            <fieldset>
+                <div class="form-group">
+                    <div>
+                        <input type="file" (change)="onUploadFile($event.target.files)" name="files" id="files" multiple class="form-control">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        <br>
+    </div>
+</div>
