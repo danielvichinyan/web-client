@@ -13,11 +13,11 @@ export class ProfileService {
     ) {
     }
 
-    viewProfile(): Observable<ProfileResponse> {
+    public viewProfile(): Observable<ProfileResponse> {
         return this.http.get<ProfileResponse>(environment.profileApiUrl + '/me');
     }
 
-    editProfile(editProfileRequest: ProfileRequest): Observable<ProfileResponse> {
+    public editProfile(editProfileRequest: ProfileRequest): Observable<ProfileResponse> {
         return this.http.put<ProfileResponse>(environment.profileApiUrl + '/me', editProfileRequest);
     }
 }
