@@ -1,28 +1,49 @@
 import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FileService } from '../services/file.service';
-import { saveAs } from 'file-saver';
 import { FileResponse } from '../payload/file.response';
+import { Subject } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { OverlayRef } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-add-lecture',
   templateUrl: './add-lecture.component.html',
   styleUrls: ['./add-lecture.component.scss']
 })
-export class AddLectureComponent implements OnInit {
+export class AddLectureComponent implements OnInit, OnDestroy {
 
+  public lectureForm: FormGroup;
+  public submitted: boolean = false;
+  private $destroy: Subject<boolean> = new Subject<boolean>();
+  public overlayRef: OverlayRef;
   public filenames: string[] = [];
-  public fileStatus = { status: '', requestType: '', percent: 0 };
   public fileResponse = new FileResponse();
+  public categories = ['Maths', 'Physics', 'Programming'];
 
   constructor(
     private fileService: FileService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    /* Lecture Form validations. (only required currently) */
+    this.lectureForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      video: ['', [Validators.required]],
+      category: ['', [Validators.required]]
+    });
   }
+
+  /**
+  * Get the controls of the login form.
+  * 
+  * @returns the controls of the login form
+  */
+  get f() { return this.lectureForm.controls }
 
   public onUploadFile(files: File[]): void {
     const formData = new FormData();
@@ -48,5 +69,10 @@ export class AddLectureComponent implements OnInit {
         this.toastrService.error('Could not download file!');
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.$destroy.next(true);
+    this.$destroy.complete();
   }
 }
