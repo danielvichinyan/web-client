@@ -4,21 +4,146 @@
     <!-- Title. -->
     <h1 class="centered-white-text">Add Lecture</h1>
 
-    <div class="panel-body">
-        <strong>Select files from your computer</strong>
-        <div *ngIf="fileStatus.status === 'progress'">
-            <div class="progress">
-                <div [style.width.%]="fileStatus.percent" class="progress-bar progress-bar-animated bg-info" role="progressbar" aria-valuenow="">
-                    {{ fileStatus.requestType }} {{ fileStatus.percent }}%
+        <!-- Lecture From. -->
+        <div [formGroup]="lectureForm" aria-labelledby="title">
+            <!-- Lecture Name Field. -->
+            <div class="form-control-group center-all-forms">
+
+                <!-- Lecture Name field. -->
+                <span class="label-with-link">
+                    <label class="label centered-white-text" for="input-name">Name:</label>
+                </span>
+        
+                <!-- Lecture Name field. -->
+                <input  nbInput
+                        class="form-control form-half-width"
+                        id="input-name"
+                        formControlName="name"
+                        [ngClass]="{'input-success': f.name.valid && f.name.touched, 
+                                    'input-error': f.name.invalid && f.name.dirty}"
+                        placeholder="Name">
+        
+                <!-- Lecture Name Required Error. -->
+                <div class="alert alert-danger form-half-width" *ngIf="f.name.touched && f.name.errors?.required">
+                    This field is required.
                 </div>
+            </div>
+
+            <br>
+
+            <!-- Lecture Description Field. -->
+            <div class="form-control-group center-all-forms">
+
+                <!-- Lecture Description field. -->
+                <span class="label-with-link">
+                    <label class="label centered-white-text" for="input-description">Description:</label>
+                </span>
+        
+                <!-- Lecture Description field. -->
+                <textarea  
+                        nbInput
+                        fullWidth
+                        class="form-control form-half-width"
+                        id="input-description"
+                        formControlName="description"
+                        [ngClass]="{'input-success': f.description.valid && f.description.touched, 
+                                    'input-error': f.description.invalid && f.description.dirty}"
+                        placeholder="Description">
+                </textarea>
+        
+                <!-- Lecture Description Required Error. -->
+                <div class="alert alert-danger form-half-width" *ngIf="f.description.touched && f.description.errors?.required">
+                    This field is required.
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Lecture Category Field. -->
+            <div class="form-control-group center-all-forms">
+
+                <!-- Lecture Category field. -->
+                <span class="label-with-link">
+                    <label class="label centered-white-text" for="input-category">Category:</label>
+                </span>
+                
+                <mat-radio-group aria-label="Select category" formControlName="category">
+                    <mat-radio-button 
+                        nbInput 
+                        class="form-control"
+                        *ngFor="let category of categories"
+                        [value]="category"
+                        [ngClass]="{'input-success': f.category.valid && f.category.touched, 
+                                    'input-error': f.category.invalid && f.category.dirty}"
+                        >{{ category }}
+                    </mat-radio-button>
+                </mat-radio-group>
+        
+                <!-- Lecture Category Required Error. -->
+                <div class="alert alert-danger form-half-width" *ngIf="f.category.touched && f.category.errors?.required">
+                    This field is required.
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Lecture Video File Field. -->
+            <div class="form-control-group center-all-forms">
+
+                <!-- Lecture Video File field. -->
+                <span class="label-with-link">
+                    <label class="label centered-white-text" for="input-video">Video File:</label>
+                </span>
+
+                <strong>Select files from your computer</strong>
+                <div>
+                    <div class="progress">
+                        <div [style.width.%]="" class="progress-bar progress-bar-animated bg-info" role="progressbar" aria-valuenow="">
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Lecture Video File field. -->
+                <input  type="file"
+                        nbInput
+                        class="form-control form-half-width"
+                        id="input-video"
+                        formControlName="video"
+                        [ngClass]="{'input-success': f.video.valid && f.video.touched, 
+                                    'input-error': f.video.invalid && f.video.dirty}"
+                        (change)="onUploadFile($event.target.files)"
+                        placeholder="Video File">
+        
+                <!-- Lecture Video File Required Error. -->
+                <div class="alert alert-danger form-half-width" *ngIf="f.video.touched && f.video.errors?.required">
+                    This field is required.
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Add Lecture Button. Calls the onUploadFile() function. -->
+            <div class="center-all-forms">
+                <button nbButton 
+                    fullWidth 
+                    status="primary" 
+                    size="large"
+                    (click)="onUploadFile($event.target.files)" 
+                    [disabled]="submitted || !lectureForm.valid"
+                    [class.btn-pulse]="submitted" 
+                    class="btn button-disabled">
+                    Add lecture
+                </button>
             </div>
         </div>
 
-        <hr>
-
-        <form enctype="multipart/form-data">
+        <!-- <form enctype="multipart/form-data">
             <fieldset>
-                <div class="form-group">
+                <div class="form-group center-all-forms">
+                    <div>
+                        <input type="text" name="">
+                    </div>
+                    
                     <div>
                         <input 
                             type="file" 
@@ -31,8 +156,5 @@
                     </div>
                 </div>
             </fieldset>
-        </form>
-
-        <br>
-    </div>
+        </form> -->
 </div>
