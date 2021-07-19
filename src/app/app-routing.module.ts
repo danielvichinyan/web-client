@@ -42,7 +42,7 @@ const routes: Routes = [
         canActivate: [AuthGuardService]
       },
       {
-        path: '',
+        path: 'leaderboard',
         loadChildren: () => import('./main/leaderboard/leaderboard.module').then(m => m.LeaderboardModule),
         canActivate: [AuthGuardService]
       }

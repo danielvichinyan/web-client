@@ -4,7 +4,7 @@ import { LeaderboardComponent } from './leaderboard.component';
 
 const routes: Routes = [
   { 
-    path: 'leaderboard', 
+    path: '', 
     component: LeaderboardComponent 
   }
 ];
