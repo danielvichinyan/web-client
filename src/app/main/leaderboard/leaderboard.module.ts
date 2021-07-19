@@ -4,26 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { ProgressSpinnerComponent, ProgressSpinnerModule } from '../common-components/progress-spinner/progress-spinner.component';
 import { ProgressSpinnerService } from '../common-components/progress-spinner/progress-spinner.service';
-import { LectureViewComponent } from './lecture-view/lecture-view.component';
-import { LecturesListComponent } from './lectures-list/lectures-list.component';
-import { LecturesRoutingModule } from './lectures-routing.module';
-import { AddLectureComponent } from './add-lecture/add-lecture.component';
-import { VideoPlayerModule } from '../common-components/video-player/video-player.module';
+import { LeaderboardComponent } from './leaderboard.component';
 
 @NgModule({
   declarations: [
-    LectureViewComponent,
-    LecturesListComponent,
-    AddLectureComponent
+    LeaderboardComponent
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     CommonModule,
-    LecturesRoutingModule,
-    ProgressSpinnerModule,
-    VideoPlayerModule
+    ProgressSpinnerModule
   ], 
   entryComponents: [
     ProgressSpinnerComponent
@@ -32,4 +24,4 @@ import { VideoPlayerModule } from '../common-components/video-player/video-playe
     ProgressSpinnerService
   ]
 })
-export class LecturesModule { }
+export class LeaderboardModule { }

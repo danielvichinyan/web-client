@@ -40,6 +40,11 @@ const routes: Routes = [
         path: '',
         loadChildren: () => import('./main/quizzes/quizzes.module').then(m => m.QuizzesModule),
         canActivate: [AuthGuardService]
+      },
+      {
+        path: '',
+        loadChildren: () => import('./main/leaderboard/leaderboard.module').then(m => m.LeaderboardModule),
+        canActivate: [AuthGuardService]
       }
     ],
   },

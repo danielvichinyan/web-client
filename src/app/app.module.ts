@@ -11,6 +11,7 @@ import { LayoutModule } from './layout/layout.module';
 import { AuthGuardService } from './main/auth/guards/auth-guard.service';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { ToastrModule } from 'ngx-toastr';
+import { VideoPlayerModule } from './main/common-components/video-player/video-player.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    VideoPlayerModule,
     LayoutModule,
     ToastrModule.forRoot()
   ],

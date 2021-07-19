@@ -1,0 +1,46 @@
+<div class="player-wrapper">
+  <vg-player (onPlayerReady)="onPlayerReady($event)">
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+
+    <vg-scrub-bar>
+      <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+      <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+    </vg-scrub-bar>
+
+    <vg-controls>
+      <vg-play-pause></vg-play-pause>
+
+      <vg-time-display vgProperty="current" vgFormat="mm:ss"> /</vg-time-display>
+      <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+      <vg-mute></vg-mute>
+      <vg-volume></vg-volume>
+
+      <vg-playback-button style="margin-left: 40em !important;"></vg-playback-button>
+      <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+
+    <!-- [src]="currentItem.src" -->
+    <video
+      #media
+      [vgMedia]="media"
+      id="singleVideo"
+      preload="auto"
+      crossorigin
+    ></video>
+  </vg-player>
+
+  <br>
+
+  <ul>
+    <li
+      class="playlist-item"
+      *ngFor="let item of playlist; let $index = index"
+      (click)="onClickPlaylistItem(item, $index)"
+      [class.selected]="item === currentItem"
+    >
+      {{ item.title }}
+    </li>
+  </ul>
+</div>
