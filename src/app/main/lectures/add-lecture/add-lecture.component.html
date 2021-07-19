@@ -20,7 +20,14 @@
             <fieldset>
                 <div class="form-group">
                     <div>
-                        <input type="file" (change)="onUploadFile($event.target.files)" name="files" id="files" multiple class="form-control">
+                        <input 
+                            type="file" 
+                            (change)="onUploadFile($event.target.files)" 
+                            name="files" 
+                            id="files" 
+                            multiple class="form-control"
+                            required
+                        >
                     </div>
                 </div>
             </fieldset>
