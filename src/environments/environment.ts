@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   authApiUrl: '/api/auth',
   profileApiUrl: '/api/profile',
-  fileApiUrl: '/api/file-manager'
+  fileApiUrl: '/api/file-manager',
+  lecturesApiUrl: '/api/lectures'
 };
 
 /*

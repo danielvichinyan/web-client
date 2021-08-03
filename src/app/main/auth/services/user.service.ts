@@ -17,7 +17,7 @@ export class UserService {
     ) {
     }
 
-    login(loginRequest: LoginRequest): Observable<any> {
+    public login(loginRequest: LoginRequest): Observable<any> {
         return this.http.post<any>(
             environment.authApiUrl + '/token',
             loginRequest,
@@ -34,7 +34,7 @@ export class UserService {
         }));
     }
 
-    register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
+    public register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
         return this.http.post<RegisterResponse>(environment.authApiUrl + '/users', registerRequest);
     }
 }
