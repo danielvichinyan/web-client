@@ -36,11 +36,13 @@ export class LectureViewComponent implements OnInit, OnDestroy {
   }
 
   public getViewLecture(name: string) {
-    return this.lectureService
+    this.openProgressSpinner();
+    this.lectureService
       .getViewLecture(name)
       .pipe(takeUntil(this.$destroy))
       .subscribe((response) => {
         this.lectureResponse = response;
+        this.progressSpinnerService.close(this.overlayRef);
       });
   }
 
