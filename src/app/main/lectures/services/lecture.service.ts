@@ -19,6 +19,6 @@ export class LectureService {
     }
 
     public getAllLectures(): Observable<LectureResponse[]> {
-       return this.http.get<LectureResponse[]>(environment.lecturesApiUrl);
+       return this.http.get<LectureResponse[]>(environment.lecturesApiUrl + '/lecture');
     }
 }

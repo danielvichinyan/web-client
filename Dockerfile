@@ -7,6 +7,6 @@ RUN npm uninstall -g @angular/cli
 RUN npm install -g @angular/cli
 RUN npm install
 COPY . /app
-RUN npm run-script build
+RUN npm run build
 FROM nginx:1.17.1-alpine
 COPY --from=web-client /app/dist/web-client /usr/share/nginx/html
