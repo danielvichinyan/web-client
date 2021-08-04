@@ -48,7 +48,6 @@ export class AddLectureComponent implements OnInit, OnDestroy {
     this.lectureForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      // video: ['', [Validators.required]],
       category: ['', [Validators.required]],
     });
   }

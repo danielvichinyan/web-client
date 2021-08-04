@@ -1,5 +1,15 @@
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .example-card {
   max-width: 400px;
+  padding: 3%;
+  margin: 3%;
 }
 
 .example-header-image {
