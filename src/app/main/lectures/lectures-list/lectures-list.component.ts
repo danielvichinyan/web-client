@@ -1,6 +1,6 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -19,9 +19,11 @@ export class LecturesListComponent implements OnInit, OnDestroy {
   private $destroy: Subject<boolean> = new Subject<boolean>();
   public lectureList: LectureResponse[] = [];
   public overlayRef: OverlayRef;
+  public name: string;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private lectureService: LectureService,
     private toastrService: ToastrService,
     private progressSpinnerService: ProgressSpinnerService
@@ -29,6 +31,10 @@ export class LecturesListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getLectureList();
+
+    this.route.params.subscribe(params => {
+      this.name = params['name'];
+    });
   }
 
   public getLectureList(): void {

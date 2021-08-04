@@ -10,7 +10,7 @@ const routes: Routes = [
     component: LecturesListComponent 
   },
   {
-    path: 'lecture',
+    path: 'lecture/:name',
     component: LectureViewComponent
   },
   {

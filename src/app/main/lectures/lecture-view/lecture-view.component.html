@@ -2,8 +2,11 @@
 <div class="col-md-12">
 
     <!-- Title. -->
-    <h1 class="centered-white-text">View Lecture</h1>
-
+    <h1 class="centered-white-text">{{ lectureResponse.name }}</h1>
+    <!-- Category -->
+    <h3 class="centered-white-text">{{ lectureResponse.category }}</h3>
+    <!-- Description -->
+    <h6 class="centered-white-text">{{ lectureResponse.description }}</h6>
     <hr>
 
     <app-video-player></app-video-player>
