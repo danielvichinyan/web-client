@@ -1,0 +1,38 @@
+<div class="container">
+	<form [formGroup]="addNewQuiz">
+		<mat-form-field appearance="outline">
+			<mat-label>Name</mat-label>
+			<input formControlName="name" type="text" matInput />
+		</mat-form-field>
+
+		<mat-form-field appearance="outline">
+			<mat-label>Description</mat-label>
+			<input formControlName="description" type="text" matInput />
+		</mat-form-field>
+
+		<mat-form-field appearance="outline">
+			<mat-label>Answer</mat-label>
+			<input formControlName="answer" type="text" matInput />
+		</mat-form-field>
+
+		<mat-form-field appearance="outline">
+			<mat-label>Reward</mat-label>
+			<input formControlName="reward" type="number" matInput />
+		</mat-form-field>
+
+		<mat-radio-group aria-label="Select category" formControlName="category">
+			<mat-radio-button *ngFor="let category of categories" class="form-control" [value]="category"
+				>{{ category }}
+			</mat-radio-button>
+		</mat-radio-group>
+
+		<button
+			(click)="addNewQuiz()"
+			[disabled]="!addQuizForm.valid"
+			mat-raised-button
+			color="primary"
+		>
+			Add Quiz
+		</button>
+	</form>
+</div>

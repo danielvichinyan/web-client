@@ -3,7 +3,8 @@ export class QuizResponse {
         public name: string = '',
         public description: string = '',
         public answer: string = '',
-        public reward: number = 0
+        public reward: number = 0,
+        public category: string  = ''
     ) {
     }
 }

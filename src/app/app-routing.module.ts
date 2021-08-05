@@ -34,7 +34,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./main/lectures/lectures.module').then(m => m.LecturesModule),
-        canActivate: [AuthGuardService]
+        // canActivate: [AuthGuardService]
       },
       {
         path: '',

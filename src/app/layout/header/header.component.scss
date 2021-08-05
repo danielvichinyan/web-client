@@ -3,6 +3,26 @@ $highlight-color: indianred;
 $highlight: indianred;
 $white: white;
 
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    .left {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 .nav {
     height: 5em !important;
 } 

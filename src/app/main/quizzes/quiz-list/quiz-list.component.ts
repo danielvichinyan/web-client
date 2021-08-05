@@ -1,5 +1,6 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
@@ -20,6 +21,8 @@ export class QuizListComponent implements OnInit, OnDestroy {
   public quizList: QuizResponse[] = [];
   public overlayRef: OverlayRef;
   public name: string;
+  public dataSource = new MatTableDataSource();
+  public displayedColumns: string[] = ['name', 'category', 'reward'];
 
   constructor(
     private router: Router,
@@ -46,6 +49,8 @@ export class QuizListComponent implements OnInit, OnDestroy {
         response.forEach(
           quiz => this.quizList.push(quiz)
         )
+        console.log(this.quizList);
+        this.dataSource.data = this.quizList;
         this.progressSpinnerService.close(this.overlayRef);
       });
   }

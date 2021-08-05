@@ -7,11 +7,13 @@ import { ProgressSpinnerService } from '../common-components/progress-spinner/pr
 import { QuizListComponent } from './quiz-list/quiz-list.component';
 import { QuizViewComponent } from './quiz-view/quiz-view.component';
 import { QuizzesRoutingModule } from './quizzes-routing.module';
+import { AddQuizComponent } from './add-quiz/add-quiz.component';
 
 @NgModule({
   declarations: [
     QuizListComponent,
-    QuizViewComponent
+    QuizViewComponent,
+    AddQuizComponent
   ],
   imports: [
     FormsModule,

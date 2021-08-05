@@ -1,71 +1,89 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a style="margin-left: 1em;" [routerLink]="['/welcome']" class="navbar-brand">Know It</a>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-    <!-- User is not logged in. -->
-      <ul class="navbar-nav mr-auto" *ngIf="!this.isUserLoggedIn">
-          <li class="nav-item">
-              <a [routerLink]="['/login']">Login</a>
-          </li>
+	<button
+		class="navbar-toggler"
+		type="button"
+		data-toggle="collapse"
+		data-target="#navbarCollapse"
+		aria-controls="navbarCollapse"
+		aria-expanded="false"
+		aria-label="Toggle navigation"
+	>
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<a style="margin-left: 1em" [routerLink]="['/welcome']" class="navbar-brand">Know It</a>
+	<div class="collapse navbar-collapse" id="navbarCollapse">
+		<!-- User is not logged in. -->
+		<ul class="navbar-nav mr-auto" *ngIf="!this.isUserLoggedIn">
+			<li class="nav-item">
+				<a [routerLink]="['/login']">Login</a>
+			</li>
+
+			<li class="nav-item">
+				<a [routerLink]="['/register']">Register</a>
+			</li>
+		</ul>
+		<!-- User is logged in. -->
+		<ul class="navbar-nav toolbar" *ngIf="this.isUserLoggedIn">
+			<div class="left">
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle"
+						id="navbarDropdown"
+						role="button"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
+						>Quizzes
+					</a>
+
+					<ul
+						class="dropdown-menu"
+						style="background-color: rgba(30, 93, 211, 0.801)"
+						aria-labelledby="navbarDropdown"
+					>
+						<a class="dropdown-anchor" [routerLink]="['/quizzes']">View All Quizzes</a>
+						<a class="dropdown-anchor" [routerLink]="['/leaderboard']">Leaderboard</a>
+
+						<div class="dropdown-divider"></div>
+
+						<a [routerLink]="['/add-quiz']">Add New Quiz</a>
+					</ul>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle"
+						id="navbarDropdown"
+						role="button"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
+						>Lectures
+					</a>
+
+					<ul
+						class="dropdown-menu"
+						style="background-color: rgba(30, 93, 211, 0.801)"
+						aria-labelledby="navbarDropdown"
+					>
+						<a class="dropdown-anchor" [routerLink]="['/lectures']">View All Lectures</a>
+
+						<div class="dropdown-divider"></div>
+
+						<a [routerLink]="['/add-lecture']">Add New Lecture</a>
+					</ul>
+				</li>
+			</div>
+
+      <div class="right">
+        <li class="nav-item">
+          <a [routerLink]="['/profile']">Profile</a>
+        </li>
   
-          <li class="nav-item">
-            <a [routerLink]="['/register']">Register</a>
-          </li>
-      </ul>
-    <!-- User is logged in. -->
-      <ul class="navbar-nav" *ngIf="this.isUserLoggedIn">
-  
-          <li class="nav-item dropdown">
-            <a 
-                class="nav-link dropdown-toggle" 
-                id="navbarDropdown" 
-                role="button" 
-                data-toggle="dropdown" 
-                aria-haspopup="true" 
-                aria-expanded="false"
-                >Quizzes
-            </a>
-
-            <ul class="dropdown-menu" style="background-color: rgba(30, 93, 211, 0.801);" aria-labelledby="navbarDropdown">
-                <a class="dropdown-anchor" [routerLink]="['/quizzes']">View All Quizzes</a>
-                <a class="dropdown-anchor" [routerLink]="['/leaderboard']">Leaderboard</a>
-
-                <div class="dropdown-divider"></div>
-                
-                <a [routerLink]="['/add-quiz']">Add New Quiz</a>
-
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a 
-                class="nav-link dropdown-toggle" 
-                id="navbarDropdown" 
-                role="button" 
-                data-toggle="dropdown" 
-                aria-haspopup="true" 
-                aria-expanded="false"
-                >Lectures
-            </a>
-
-            <ul class="dropdown-menu" style="background-color: rgba(30, 93, 211, 0.801);" aria-labelledby="navbarDropdown">
-                <a class="dropdown-anchor" [routerLink]="['/lectures']">View All Lectures</a>
-
-                <div class="dropdown-divider"></div>
-                
-                <a [routerLink]="['/add-lecture']">Add New Lecture</a>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a [routerLink]="['/profile']">Profile</a>
-          </li>
-
-          <li class="nav-item">
-            <a [routerLink]="['/welcome']" (click)="logout()">Logout</a>
-          </li>
-      </ul>
-    </div>
-  </nav>
+        <li class="nav-item">
+          <a [routerLink]="['/welcome']" (click)="logout()">Logout</a>
+        </li>
+      </div>
+		</ul>
+	</div>
+</nav>
