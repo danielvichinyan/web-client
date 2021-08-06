@@ -10,7 +10,7 @@ const routes: Routes = [
     component: QuizListComponent 
   },
   {
-    path: 'quiz',
+    path: 'quiz/:name',
     component: QuizViewComponent
   },
   {

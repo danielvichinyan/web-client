@@ -1,5 +1,7 @@
 import { OverlayRef } from '@angular/cdk/overlay';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -22,7 +24,11 @@ export class QuizListComponent implements OnInit, OnDestroy {
   public overlayRef: OverlayRef;
   public name: string;
   public dataSource = new MatTableDataSource();
-  public displayedColumns: string[] = ['name', 'category', 'reward'];
+  public displayedColumns: string[] = ['name', 'category', 'reward', 'description', 'actions'];
+  public resultsLength: number = 0;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private router: Router,
@@ -34,7 +40,6 @@ export class QuizListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getQuizList();
-
     this.route.params.subscribe(params => {
       this.name = params['name'];
     });
@@ -49,8 +54,9 @@ export class QuizListComponent implements OnInit, OnDestroy {
         response.forEach(
           quiz => this.quizList.push(quiz)
         )
-        console.log(this.quizList);
+
         this.dataSource.data = this.quizList;
+        this.resultsLength = this.quizList.length;
         this.progressSpinnerService.close(this.overlayRef);
       });
   }
