@@ -1,1 +1,33 @@
-<p>First Quiz!</p>
+<!-- View Quiz Page. -->
+<!-- Title. -->
+<h1 class="centered-white-text-top">{{ quizResponse?.name }}</h1>
+<!-- Category -->
+<h2 class="centered-white-text">{{ quizResponse?.category }}</h2>
+<!-- Description -->
+<h2 class="centered-white-text">{{ quizResponse?.description }}</h2>
+
+<div class="container">
+  <form [formGroup]="answerQuizForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Answer</mat-label>
+      <input formControlName="answer" type="text" matInput />
+    </mat-form-field>
+
+    <button
+      (click)="isAnswerValid()"
+      [disabled]="isQuizCompleted"
+      mat-raised-button
+      color="primary"
+    >
+      Submit answer
+    </button>
+    <button
+      [hidden]="!isQuizCompleted"
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/quizzes']"
+    >
+      Choose next quiz!
+    </button>
+  </form>
+</div>

@@ -34,12 +34,12 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./main/lectures/lectures.module').then(m => m.LecturesModule),
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: '',
         loadChildren: () => import('./main/quizzes/quizzes.module').then(m => m.QuizzesModule),
-        canActivate: [AuthGuardService]
+        // canActivate: [AuthGuardService]
       },
       {
         path: 'leaderboard',
