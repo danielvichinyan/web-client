@@ -1,6 +1,6 @@
 import { OverlayRef } from "@angular/cdk/overlay";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { ProgressSpinnerComponent } from "../../common-components/progress-spinner/progress-spinner.component";
@@ -29,11 +29,12 @@ export class AddQuizComponent implements OnInit {
 
     ngOnInit() {
         this.addQuizForm = this.fb.group({
-            name: [''],
-            description: [''],
-            answer: [''],
-            reward: [''],
-            category: ['']
+            name: ['', Validators.required],
+            description: ['', Validators.required],
+            answer: ['', Validators.required],
+            reward: ['', Validators.required],
+            category: ['', Validators.required],
+            hint: ['', Validators.required]
         });
     }
 
@@ -52,7 +53,7 @@ export class AddQuizComponent implements OnInit {
         this.openProgressSpinner();
         const quiz = this.collectAddQuizFormData();
         this.quizService.addQuiz(quiz).subscribe((response) => {
-            this.router.navigate(['lectures']);
+            this.router.navigate(['quizzes']);
             this.toastrService.success("Quiz added successfully!");
             this.progressSpinnerService.close(this.overlayRef);
         });

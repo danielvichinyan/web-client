@@ -4,7 +4,8 @@ export class QuizResponse {
         public description: string = '',
         public answer: string = '',
         public reward: number = 0,
-        public category: string  = ''
+        public category: string  = '',
+        public hint: string = ''
     ) {
     }
 }

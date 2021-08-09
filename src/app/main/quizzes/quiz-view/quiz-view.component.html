@@ -13,6 +13,10 @@
       <input formControlName="answer" type="text" matInput />
     </mat-form-field>
 
+    <div style="background-color: green; color: white" [hidden]="!isHintAlreadyShown">
+      Hint: {{ quizResponse?.hint }}
+    </div>
+
     <button
       (click)="isAnswerValid()"
       [disabled]="isQuizCompleted"
@@ -21,6 +25,16 @@
     >
       Submit answer
     </button>
+
+    <button
+      (click)="showHint()"
+      [disabled]="isHintAlreadyShown"
+      mat-raised-button
+      color="primary"
+    >
+      Show hint
+    </button>
+
     <button
       [hidden]="!isQuizCompleted"
       mat-raised-button

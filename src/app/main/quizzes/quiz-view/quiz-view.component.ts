@@ -7,16 +7,18 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ProgressSpinnerComponent } from '../../common-components/progress-spinner/progress-spinner.component';
 import { ProgressSpinnerService } from '../../common-components/progress-spinner/progress-spinner.service';
+import { ProfileResponse } from '../../profile/payload/profile.response';
+import { ProfileService } from '../../profile/services/profile-service';
+import { UserGainPointsRequestModel } from '../payload/profile-points.request';
 import { QuizResponse } from '../payload/quiz.response';
 import { QuizService } from '../services/quiz.service';
 
 @Component({
   selector: 'app-quiz-view',
   templateUrl: './quiz-view.component.html',
-  styleUrls: ['./quiz-view.component.scss']
+  styleUrls: ['./quiz-view.component.scss'],
 })
 export class QuizViewComponent implements OnInit {
-
   public answerQuizForm: FormGroup;
   public quizName: string;
   private $destroy: Subject<boolean> = new Subject<boolean>();
@@ -24,6 +26,11 @@ export class QuizViewComponent implements OnInit {
   public quizResponse: QuizResponse;
   public isQuizCompleted: boolean = false;
   public pointsAwarded: number;
+  public profilePointsRequest: UserGainPointsRequestModel;
+  public profile: ProfileResponse;
+  public oldUserPoints: number;
+  public isHintAlreadyShown: boolean = false;
+  public hint: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,8 +38,11 @@ export class QuizViewComponent implements OnInit {
     private quizService: QuizService,
     private progressSpinnerService: ProgressSpinnerService,
     private fb: FormBuilder,
-    private toastrService: ToastrService
-  ) {}
+    private toastrService: ToastrService,
+    private profileService: ProfileService
+  ) {
+    // this.profilePointsRequest = new UserGainPointsRequestModel(0);
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -42,7 +52,7 @@ export class QuizViewComponent implements OnInit {
     this.getViewQuiz(this.quizName);
 
     this.answerQuizForm = this.fb.group({
-      answer: ['']
+      answer: [''],
     });
   }
 
@@ -73,14 +83,39 @@ export class QuizViewComponent implements OnInit {
     if (this.quizResponse.answer === this.answerQuizForm.value['answer']) {
       this.isQuizCompleted = true;
       this.pointsAwarded += 20;
-      this.toastrService.success(`Congratulations! You have completed the quiz! Reward: ${this.quizResponse.reward} points!`);
+      this.toastrService.success(
+        `Congratulations! You have completed the quiz! Reward: ${this.quizResponse.reward} points!`
+      );
+      this.getUserProfile(); // get the profile of the user and 
+      this.updateUserQuizPoints(); // update their points
       return true;
     } else {
       this.isQuizCompleted = false;
-      this.toastrService.error(`Ooops! Wrong answer! Try again!`)
+      this.toastrService.error(`Ooops! Wrong answer! Try again!`);
     }
 
     return false;
   }
 
+  public getUserProfile() {
+    this.profileService.viewProfile().subscribe(response => {
+      this.profile = response;
+      this.profilePointsRequest!.quizPoints = this.profile.quizPoints + this.quizResponse.reward;
+    });
+  }
+
+  public updateUserQuizPoints(): void {
+    this.quizService
+      .updateUserPoints(this.profilePointsRequest)
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((response) => {
+        this.profile = response;
+        console.log(this.profilePointsRequest);
+        console.log("Profile: " + this.profile.quizPoints);
+      });
+  }
+
+  public showHint(): void {
+    this.isHintAlreadyShown = true;
+  }
 }
