@@ -2,7 +2,7 @@
 <div class="col-md-12">
 
     <!-- Title. -->
-    <h1 class="centered-white-text">{{ lectureResponse.name }}</h1>
+    <h1 class="centered-white-text-top">{{ lectureResponse.name }}</h1>
     <!-- Category -->
     <h3 class="centered-white-text">{{ lectureResponse.category }}</h3>
     <!-- Description -->
@@ -10,4 +10,7 @@
     <hr>
 
     <app-video-player></app-video-player>
+    <video autoplay controls width="640" height="480">
+        <source [(src)]="video" type="video/mp4">
+    </video>
 </div>

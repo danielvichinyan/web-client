@@ -20,4 +20,8 @@ export class ProfileService {
     public editProfile(editProfileRequest: ProfileRequest): Observable<ProfileResponse> {
         return this.http.put<ProfileResponse>(environment.profileApiUrl + '/me', editProfileRequest);
     }
+
+    public getUserProfiles(): Observable<ProfileResponse[]> {
+        return this.http.get<ProfileResponse[]>(environment.profileApiUrl + '/users');
+    }
 }

@@ -15,7 +15,7 @@ import { LectureRequest } from '../payload/lecture.request';
 import { LectureResponse } from '../payload/lecture.response';
 import { ProgressSpinnerComponent } from '../../common-components/progress-spinner/progress-spinner.component';
 import { ProgressSpinnerService } from '../../common-components/progress-spinner/progress-spinner.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -33,6 +33,7 @@ export class AddLectureComponent implements OnInit, OnDestroy {
   public lectureRequest = new LectureRequest();
   public lectureResponse = new LectureResponse();
   public categories = ['Maths', 'Physics', 'Programming'];
+  public filename: string;
 
   constructor(
     private fileService: FileService,
@@ -40,7 +41,8 @@ export class AddLectureComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private lectureService: LectureService,
     private progressSpinnerService: ProgressSpinnerService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class AddLectureComponent implements OnInit, OnDestroy {
     this.lectureForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
+      video: ['', [Validators.required]],
       category: ['', [Validators.required]],
     });
   }
@@ -83,31 +86,20 @@ export class AddLectureComponent implements OnInit, OnDestroy {
     );
   }
 
-  // public onUploadFile(files: File[]): void {
-  //   const formData = new FormData();
-  //   formData.append('file', files[0], files[0].name);
-  //   this.fileService.uploadFile(formData).subscribe(
-  //     (response) => {
-  //       this.fileResponse = response;
-  //       this.toastrService.success('File uploaded successfully!');
-  //       console.log(this.fileResponse);
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       this.toastrService.error('Could not upload file!');
-  //     }
-  //   );
-  // }
-
-  // public onDownloadFile(filename: string): void {
-  //   this.fileService.downloadFile(filename).subscribe(
-  //     (response) => {
-  //       console.log(response);
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       this.toastrService.error('Could not download file!');
-  //     }
-  //   );
-  // }
+  public onUploadFile(files: File[]): void {
+    const formData = new FormData();
+    formData.append('file', files[0], files[0].name);
+    this.fileService.uploadFile(formData).subscribe(
+      (response) => {
+        this.fileResponse = response;
+        this.toastrService.success('File uploaded successfully!');
+        console.log(this.fileResponse);
+      },
+      (error: HttpErrorResponse) => {
+        this.toastrService.error('Could not upload file!');
+      }
+    );
+  }
 
   ngOnDestroy(): void {
     this.$destroy.next(true);

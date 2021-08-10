@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   public login(): void { 
     this.openProgressSpinner();
     this.user = this.loginForm.value;
-    this.submitted = true;
     
     this.userService.login(this.user)
     .pipe(

@@ -20,6 +20,7 @@ export class LecturesListComponent implements OnInit, OnDestroy {
   public lectureList: LectureResponse[] = [];
   public overlayRef: OverlayRef;
   public name: string;
+  public filename: string;
 
   constructor(
     private router: Router,

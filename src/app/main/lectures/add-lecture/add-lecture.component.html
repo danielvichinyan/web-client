@@ -87,6 +87,41 @@
 
             <br>
 
+            <!-- Lecture Video File Field. -->
+            <div class="form-control-group center-all-forms">
+
+                <!-- Lecture Video File field. -->
+                <span class="label-with-link">
+                    <label class="label centered-white-text" for="input-video">Video File:</label>
+                </span>
+
+                <strong>Select files from your computer</strong>
+                <div>
+                    <div class="progress">
+                        <div [style.width.%]="" class="progress-bar progress-bar-animated bg-info" role="progressbar" aria-valuenow="">
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Lecture Video File field. -->
+                <input  type="file"
+                        nbInput
+                        class="form-control form-half-width"
+                        id="input-video"
+                        formControlName="video"
+                        [ngClass]="{'input-success': f.video.valid && f.video.touched, 
+                                    'input-error': f.video.invalid && f.video.dirty}"
+                        (change)="onUploadFile($event.target.files)"
+                        placeholder="Video File">
+        
+                <!-- Lecture Video File Required Error. -->
+                <div class="alert alert-danger form-half-width" *ngIf="f.video.touched && f.video.errors?.required">
+                    This field is required.
+                </div>
+            </div>
+
+            <br>
+
             <!-- Add Lecture Button. Calls the onUploadFile() function. was (click)=onUploadFile($event.target.files) -->
             <div class="center-all-forms">
                 <button nbButton 

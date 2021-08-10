@@ -39,7 +39,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./main/quizzes/quizzes.module').then(m => m.QuizzesModule),
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'leaderboard',

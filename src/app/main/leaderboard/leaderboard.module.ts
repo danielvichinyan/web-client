@@ -5,6 +5,7 @@ import { MaterialModule } from 'src/app/shared/material.module';
 import { ProgressSpinnerComponent, ProgressSpinnerModule } from '../common-components/progress-spinner/progress-spinner.component';
 import { ProgressSpinnerService } from '../common-components/progress-spinner/progress-spinner.service';
 import { LeaderboardComponent } from './leaderboard.component';
+import { LeaderboardRoutingModule } from './leaderboard-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { LeaderboardComponent } from './leaderboard.component';
     ReactiveFormsModule,
     MaterialModule,
     CommonModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    LeaderboardRoutingModule
   ], 
   entryComponents: [
     ProgressSpinnerComponent

@@ -1,7 +1,29 @@
-<!-- Contact Us Page. -->
-<div class="col-md-12">
+<!-- Title. -->
+<h1 class="centered-white-text">Add Quiz</h1>
+<div class="container">
+  <form [formGroup]="contactForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" type="text" matInput />
+    </mat-form-field>
 
-    <!-- Title. -->
-    <h1 class="centered-heading">Contact Us</h1>
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" type="email" matInput />
+      </mat-form-field>
 
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input formControlName="description" type="text" matInput />
+    </mat-form-field>
+
+    <button
+      (click)="contact()"
+      [disabled]="!contactForm.valid"
+      mat-raised-button
+      color="primary"
+    >
+      Contact
+    </button>
+  </form>
 </div>

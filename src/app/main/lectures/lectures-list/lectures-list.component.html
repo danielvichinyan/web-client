@@ -2,24 +2,27 @@
 <h1 class="centered-white-text">Lectures</h1>
 
 <div class="container">
-	<mat-card class="example-card" *ngFor="let lecture of lectureList">
-		<mat-card-header>
-			<div mat-card-avatar class="example-header-image"></div>
-			<mat-card-title> {{ lecture.name }} </mat-card-title>
-			<mat-card-subtitle> {{ lecture.category }} </mat-card-subtitle>
-		</mat-card-header>
-		<img
-			mat-card-image
-			src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-			alt="Photo of a Shiba Inu"
-		/>
-		<mat-card-content>
-			<p>
-				{{ lecture.description }}
-			</p>
-		</mat-card-content>
-		<mat-card-actions>
-			<button mat-raised-button [routerLink]="['/lecture', lecture.name]" color="primary">View</button>
-		</mat-card-actions>
-	</mat-card>
+  <mat-card class="example-card" *ngFor="let lecture of lectureList">
+    <mat-card-header>
+      <mat-card-title> {{ lecture.name }} </mat-card-title>
+      <mat-card-subtitle> {{ lecture.category }} </mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+    />
+    <mat-card-content>
+      <p>
+        {{ lecture.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        [routerLink]="['/lecture', lecture.name]"
+        color="primary"
+      >
+        View
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
