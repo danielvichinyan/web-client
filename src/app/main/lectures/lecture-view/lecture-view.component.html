@@ -6,11 +6,8 @@
     <!-- Category -->
     <h3 class="centered-white-text">{{ lectureResponse.category }}</h3>
     <!-- Description -->
-    <h6 class="centered-white-text">{{ lectureResponse.description }}</h6>
+    <h3 class="centered-white-text">{{ lectureResponse.description }}</h3>
     <hr>
 
     <app-video-player></app-video-player>
-    <video autoplay controls width="640" height="480">
-        <source [(src)]="video" type="video/mp4">
-    </video>
 </div>
